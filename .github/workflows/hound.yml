@@ -1,0 +1,20 @@
+name: Find secrets on push
+ 
+on:
+  push:
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+jobs:
+  build:
+    name: Build with Docker
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Building the image from the Dockerfile
+        uses: ./.github/action-docker
